@@ -1,9 +1,13 @@
+import datetime
+
 from django.shortcuts import render
+from django.db import models
+from .models import Post
 
 
 posts = [
     {
-        'author': 'Benjamin McGregor',
+        'author': 'BenjiM',
         'title': 'Advances of Explainable AI',
         'content': 'Artificial intelligence (AI) can be defined as the science of creating machines (or programs) '
                    'that perform many tasks that would usually require human intelligence. The term covers a wide '
@@ -16,15 +20,15 @@ posts = [
                    '‘adding transparency to ML (machine learning) models’ by providing comprehensive information '
                    'detailing how the program reached the decision it did. This allows humans to clearly view and '
                    'dissect the decisions that the program made, and consequently why it reached its decision. ',
-        'date_posted': '9th June 2022'
+        'date_posted':  datetime.datetime(2022, 6, 10, 7, 0)
     },
     {
-        'author': 'William Strover',
+        'author': 'WillS',
         'title': 'The Importance of Punctuality',
         'content': 'Punctuality is incredibly important. As a university student I often find it hard to make it to '
                    'all my lectures on time. Here are 5 steps to help you be punctual: 1 - Set alarms, 2 - Wake up '
                    'early, 3 - Go to bed early, 4 - Eat three meals a day, 5 - Catch up on missed lectures.',
-        'date_posted': '10th June 2022'
+        'date_posted':  datetime.datetime(2022, 6, 9, 13, 30)
     }
 
 ]
@@ -32,7 +36,9 @@ posts = [
 
 def home(request):
     context = {
-        'posts' : posts
+        #'posts': Post.objects.all()
+        # Would usually be 'Post.objects.all()' but I wanted to include the hardcoded blogs
+        'posts': list(Post.objects.all()) + posts
     }
     return render(request, 'blog/home.html', context)
 
