@@ -36,7 +36,7 @@ posts = [
 
 def home(request):
     context = {
-        #'posts': Post.objects.all()
+        #  'posts': Post.objects.all()
         # Would usually be 'Post.objects.all()' but I wanted to include the hardcoded blogs
         'posts': list(Post.objects.all()) + posts
     }
